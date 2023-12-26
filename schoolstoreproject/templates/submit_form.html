@@ -1,0 +1,16 @@
+<!-- submit_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+{% csrf_token %}
+    <div class="container mt-4">
+        <div class="alert alert-success">
+            <strong>Form Submitted Successfully!</strong>
+            <p>Thank you for submitting the form.</p>
+        </div>
+        <a href="{% url 'store:home' %}" class="btn btn-primary">Return to Home Page</a>
+
+
+    </div>
+{% endblock %}

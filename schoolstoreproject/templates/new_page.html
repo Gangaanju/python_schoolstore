@@ -1,0 +1,11 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 style="color: black; text-align: center; font-family: 'Arial', sans-serif;">Click the button to display form</h1><br><br><br>
+    <a href="{% url 'store:form' %}" style="display: block; width: 200px; margin: 0 auto; text-align: center; padding: 10px; background-color: #3e5585; color: #fff; text-decoration: none; border-radius: 5px;">Show Form</a>
+
+    <!-- Your additional content for the new page -->
+{% endblock %}
+
+

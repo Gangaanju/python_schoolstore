@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<form method="post" action="" xmlns="http://www.w3.org/1999/html">
+        {% csrf_token %}
+    <div style="background-color: #f2f2f2; padding: 20px; text-align: center;">
+        <h1 style="color: blue; font-size: 30px; font-weight: bold;">REGISTRATION PAGE</h1>
+<!--        <form style="max-width: 300px; margin: 0 auto;">-->
+            <label for="username" style="display: block; margin-bottom: 5px;">Username:</label>
+            <input type="text" id="username" name="username" style="width: 30%; padding: 8px; margin-bottom: 10px; text-align: center;" placeholder="Enter your username">
+
+            <label for="password" style="display: block; margin-bottom: 5px;">Password:</label>
+            <input type="password" id="password" name="password" style="width: 30%; padding: 8px; margin-bottom: 10px; text-align: center;" placeholder="Enter your password">
+
+    <label for="password" style="display: block; margin-bottom: 5px;">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" style="width: 30%; padding: 8px; margin-bottom: 10px; text-align: center;" placeholder="Re-enter your password">
+
+    <button type="submit" class="btn btn-primary d-block mx-auto">Register</button>
+
+
+
+
+    {% if message %}
+    <h2>{{message}}</h2>
+    {% endif %}<br><br>
+
+
+<div style="text-align: center;">
+    <a href="{% url 'store:login' %}" style="display: inline-block;">Already have an account? Login Here</a>
+</div>
+    </div>
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,102 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if confirmation_message %}
+        <div class="alert alert-success" style="margin-bottom: 20px;">
+            <strong>{{ confirmation_message }}</strong>
+        </div>
+    {% else %}
+        <h1 style="color: black; text-align: center;">Form</h1>
+        <form action="{% url 'store:submit_form' %}" method="post" style="max-width: 500px; margin: 0 auto;">
+            {% csrf_token %}
+            <label for="name" style="display: block; margin-bottom: 10px;">Name:</label>
+            <input type="text" id="name" name="name" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+             <label for="dob" style="display: block; margin-bottom: 10px;">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+             <label for="age" style="display: block; margin-bottom: 10px;">Age:</label>
+            <input type="number" id="age" name="name" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+             <label for="gender" style="display: block; margin-bottom: 10px;">Gender:</label>
+            <select id="gender" name="gender" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br>
+
+            <label for="phone_number" style="display: block; margin-bottom: 10px;">Phone Number:</label>
+            <input type="text" id="phone_number" name="phone_number" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+            <label for="email" style="display: block; margin-bottom: 10px;">Email:</label>
+            <input type="email" id="email" name="email" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+            <label for="address" style="display: block; margin-bottom: 10px;">Address:</label>
+            <textarea id="address" name="address" style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea><br>
+
+
+
+
+            <label for="department">Select Department:</label>
+         <select id="department" onchange="populatedCourses()" name="department" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+            <option value="" selected disabled>Select Department</option>
+            <option value="chemistry">Chemistry</option>
+            <option value="computer_science">Computer Science</option>
+            <option value="commerce">Commerce</option>
+            <option value="physics">Physics</option>
+            <option value="economics">Economics</option>
+        </select><br>
+<!--        <label for="department">Select Department:</label>-->
+<!--        <select id="department" name="department">-->
+<!--            <option value="" selected disabled>Select Department</option>-->
+<!--        </select><br>-->
+
+            <label for="courses" style="display: block; margin-bottom: 10px;">Courses:</label>
+            <input type="text" id="courses" name="courses" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
+
+
+            <input type="submit" value="Submit" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer; margin-top: 10px;">
+
+            <a class="btn btn-primary" href="{% url 'store:logout' %}" style="display: block; text-decoration: none; text-align: center; margin-top: 20px;">Logout</a>
+        </form>
+
+
+<script>
+        // Define courses data for each department
+        const coursesByDepartment = {
+            chemistry: ["Organic chemistry],
+            computer_science: ["AI"],
+            commerce: ["BCom"],
+            physics: ["Optics"],
+            economics: ["Research at AEI"],
+
+        };
+
+        function populateCourses() {
+            // Get selected department
+            const selectedDepartment = document.getElementById("department").value;
+
+            // Get the courses dropdown element
+            const coursesDropdown = document.getElementById("courses");
+
+            // Clear existing options
+            coursesDropdown.innerHTML = '<option value="" selected disabled>Select courses</option>';
+
+            // Populate courses based on the selected department
+            if (selectedDepartment && coursesByDepartment[selectedDepartment]) {
+                coursesByDepartment[selectedDepartment].forEach(courses => {
+                    const option = document.createElement("option");
+                    option.value = courses;
+                    option.text = courses;
+                    coursesDropdown.appendChild(option);
+                });
+            }
+        }
+    </script>
+    {% endif %}
+{% endblock %}
+
+
+
